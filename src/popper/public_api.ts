@@ -1,6 +1,14 @@
+// export
+export {
+  computeAutoPlacement,
+  getBoundingClientRect,
+  getOffsetParent,
+  getPopperOffsets,
+  getReferenceOffsets
+} from './utils';
+
 // Utils
-import { debounce } from './utils/debounce';
-import { isFunction } from './utils/isFunction';
+import { debounce, isFunction } from './utils';
 
 // Methods
 import { update } from './methods/update';
@@ -64,13 +72,13 @@ export class Popper {
     this.options.modifiers = {};
     Object.keys({
       ...Popper.Defaults.modifiers,
-      ...options.modifiers,
+      ...options.modifiers
     }).forEach(name => {
       this.options.modifiers[name] = {
         // If it's a built-in modifier, use it as base
         ...(Popper.Defaults.modifiers[name] || {}),
         // If there are custom options, override and merge with default ones
-        ...(options.modifiers ? options.modifiers[name] : {}),
+        ...(options.modifiers ? options.modifiers[name] : {})
       };
     });
 
@@ -78,7 +86,7 @@ export class Popper {
     this.modifiers = Object.keys(this.options.modifiers)
       .map(name => ({
         name,
-        ...this.options.modifiers[name],
+        ...this.options.modifiers[name]
       }))
       // sort the modifiers by order
       .sort((a, b) => a.order - b.order);
@@ -87,8 +95,9 @@ export class Popper {
     // such code is executed in the same order of its modifier
     // they could add new properties to their options configuration
     // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
-    this.modifiers.forEach(modifierOptions => {
+    this.modifiers.forEach((modifierOptions: any) => {
       if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+
         modifierOptions.onLoad(
           this.reference,
           this.popper,
