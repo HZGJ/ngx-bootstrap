@@ -1,10 +1,12 @@
 // export
 export {
   computeAutoPlacement,
+  getBoundaries,
   getBoundingClientRect,
   getOffsetParent,
   getPopperOffsets,
-  getReferenceOffsets
+  getReferenceOffsets,
+  getSupportedPropertyName
 } from './utils';
 
 // Utils

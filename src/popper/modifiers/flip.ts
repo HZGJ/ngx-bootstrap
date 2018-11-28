@@ -4,7 +4,7 @@ import {
   getPopperOffsets,
   runModifiers,
   getBoundaries,
-  isModifierEnabled,
+  isModifierEnabled
 } from '../utils';
 
 import { clockwise } from '../utils/clockwise';
